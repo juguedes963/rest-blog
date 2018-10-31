@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<html>
+<head>
+	<title>Blog</title>
+	<link rel="stylesheet" type="text/css" href="index.css">
+	<title></title>
+</head>
+<body>
+	<ul id="menu"> 
+	<li><a href="index.html">Home</a></li>
+
+
+	</ul>
+
+		<h1>Animes</h1>
+		
+
+	<div id="demo"></div>
+</body>
+<script type="text/javascript">
+
+
+//carregando as categorias no menu
+var xhttp = new XMLHttpRequest();
+xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+       // variavel dados vira um array com os dados trazidos da requisicao
+       var dados = JSON.parse(xhttp.responseText);
+       for(i=0; i<dados.length; i++){
+	       	var ul = document.getElementById("menu");
+	       	var li = document.createElement("li");
+	       	var a = document.createElement("a");
+	       	var href = document.createAttribute("href", "#");
+	       	var texto = document.createTextNode(dados[i].nome);
+	       	a.appendChild(texto);
+	       	a.setAttributeNode(href);
+	       	li.appendChild(a);
+	       	ul.appendChild(li);
+       }
+
+    }
+};
+xhttp.open("GET", "http://localhost/rest_blog/api/categoria/read.php", true);
+xhttp.send();
+/////////////////////////////////////
+
+var xhttp2 = new XMLHttpRequest();
+xhttp2.onreadystatechange = function(){
+    if (xhttp2.readyState == 4 && xhttp2.status == 200){
+    	var dados2 = JSON.parse(xhttp2.responseText);
+        //document.getElementById("demo").innerHTML = dados2[0].titulo;
+        for(i=0; i<dados2.length; i++){
+        	var demo = document.getElementById("demo");
+        	var div = document.createElement("div");
+        	var p = document.createElement("p");
+        	var h2 = document.createElement("h2");
+	        var a = document.createElement("a");
+	       	var href = document.createAttribute("href", "#");
+	       	var texto = document.createTextNode(dados2[i].titulo);
+	       	var descricao = document.createTextNode(dados2[i].texto);
+	       	a.appendChild(texto);
+	       	a.setAttributeNode(href);
+	       	h2.appendChild(a);
+	       	div.appendChild(h2);
+	       	p.appendChild(descricao);
+	       	div.appendChild(p);
+	       	demo.appendChild(div);
+       }
+    }
+}
+xhttp2.open("GET", "http://localhost/rest_blog/api/post/read.php", true);
+xhttp2.send();
+/*var xhttp3 = new XMLHttpRequest();
+$("href").click(function(){
+	xhttp3.open("GET", "http://localhost/rest_blog/api/post/read.php?id=2", true);
+	xhttp3.send();
+});
+*/
+</script>
+</html>

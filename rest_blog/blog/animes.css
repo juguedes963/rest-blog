@@ -1,0 +1,43 @@
+ul{
+			background: gray;
+			padding-top: 10px;
+			padding-bottom: 10px
+		}
+
+		li{
+			display: inline;
+			margin-left: 20px;
+			
+		}
+		li a{
+			color:white;
+			text-decoration: none;
+			padding:10px;
+		}
+
+		li a:hover{
+			background:green;
+		}
+
+		body{
+			font-family: ;
+		}
+
+		h1{
+			text-align: center;
+		}
+		h2{
+			text-align: center;
+		}
+
+		p{
+			margin-left: 5%;
+			width:80%;
+			text-align: justify;
+		}
+		body{
+			background: #d1e0e0;
+			
+		}
+		
+		
